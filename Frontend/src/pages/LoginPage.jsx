@@ -12,7 +12,7 @@ function LoginPage() {
     const [isRegister, setIsRegister] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    axios.defaults.withCredentials = true;
     const onSubmitLogin = async (data) => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, data);
