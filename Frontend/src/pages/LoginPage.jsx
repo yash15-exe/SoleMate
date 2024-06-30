@@ -113,7 +113,7 @@ function LoginPage() {
                             />
                             {errorsLogin.password && <p className="text-red-500 text-sm mt-1">{errorsLogin.password.message}</p>}
                         </div>
-                        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300">Login</button>
+                        <button type="submit" className="w-full bg-black text-white p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-300">Login</button>
                         <button 
                             type="button" 
                             className="w-full mt-4 text-blue-500 hover:underline"
