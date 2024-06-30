@@ -14,7 +14,7 @@ function ProductDisplay() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `/api/products/searchProducts`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/products/searchProducts`,
           {
             params: {
               name: searchTerm,

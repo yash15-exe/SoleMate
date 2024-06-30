@@ -43,7 +43,7 @@ function AllOrders() {
     const confirmed = window.confirm('Are you sure you want to cancel this order?');
     if (confirmed) {
       try {
-        await axios.post(`/api/order/cancelOrder`, { orderId });
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/cancelOrder`, { orderId });
         setOrders(prevOrders =>
           prevOrders.map(order =>
             order._id === orderId ? { ...order, orderStatus: 'cancelled' } : order

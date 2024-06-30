@@ -14,7 +14,7 @@ function UserOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.post(`/api/order/getAllUserOrders`, { userId });
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getAllUserOrders`, { userId });
         setOrders(response.data);
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -29,7 +29,7 @@ function UserOrders() {
 
   const handleCancelOrder = async (orderId) => {
     try {
-      await axios.post(`/api/order/requestOrderForCancellation`, { orderId });
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/requestOrderForCancellation`, { orderId });
       setOrders(orders.map(order =>
         order._id === orderId ? { ...order, cancellationRequest: true } : order
       ));
@@ -42,7 +42,7 @@ function UserOrders() {
 
   const handleRateProduct = async (productId, rating) => {
     try {
-      const response = await axios.post(`/api/products/rateProduct`, { productId, rating });
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/products/rateProduct`, { productId, rating });
       setOrders(prevOrders =>
         prevOrders.map(order => {
           if (order._id === response.data.orderId) {

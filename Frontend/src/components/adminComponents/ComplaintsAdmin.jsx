@@ -25,7 +25,7 @@ function Feedback() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.post(`/api/deleteFeedback`, { id });
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/deleteFeedback`, { id });
       setFeedbacks(feedbacks.filter((feedback) => feedback._id !== id));
       toast.success('Feedback deleted successfully');
     } catch (err) {

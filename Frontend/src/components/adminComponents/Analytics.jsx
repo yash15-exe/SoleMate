@@ -12,7 +12,7 @@ function Analytics() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.post(`/api/order/getAllAdminOrders`);
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getAllAdminOrders`);
         setOrders(response.data.orders);
       } catch (err) {
         setError('Failed to fetch orders');

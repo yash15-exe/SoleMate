@@ -15,7 +15,7 @@ function LoginPage() {
 
     const onSubmitLogin = async (data) => {
         try {
-            const response = await axios.post(`/api/auth/login`, data);
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, data);
             const { token, user } = response.data;
             storeTokenInCookie(token);
             dispatch(login({ user }));
@@ -28,7 +28,7 @@ function LoginPage() {
 
     const onSubmitRegister = async (data) => {
         try {
-            const response = await axios.post(`/api/auth/register`, data);
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, data);
             console.log(response.data); // Log response for registration success
             setIsRegister(false); // Automatically switch to login after registration
         } catch (error) {

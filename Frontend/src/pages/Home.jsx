@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 import Category from '../components/Category';
 import Collection from '../components/Collection';
 import Banner from '../components/Banner';
