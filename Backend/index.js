@@ -33,8 +33,15 @@ app.use("/api", productRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", orderRoutes);
 
+app.get("/smily", (req, res)=>[
+  res.send("smlilyyyy")
+])
+
 // Start the server
 const SERVER_PORT = process.env.PORT || 5000;
 app.listen(SERVER_PORT, () => {
   console.log(`Server listening on port ${SERVER_PORT}`);
 });
+
+
+export default app
