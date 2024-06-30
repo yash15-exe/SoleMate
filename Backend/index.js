@@ -16,15 +16,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Ensure the database connection is established
 await dbConnect(process.env.DATABASE_URL);
-app.options('*', cors())
+
 // Configure CORS
 const corsOptions = {
-  origin: 'https://solemate-app.vercel.app/', // Allow requests only from your frontend origin
+  origin: 'https://solemate-app.vercel.app', // Allow requests only from your frontend origin
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true // Allow credentials
 };
-
 
 app.use(cors(corsOptions));
 
@@ -33,7 +32,6 @@ app.use("/api", authRoutes);
 app.use("/api", productRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", orderRoutes);
-
 
 // Start the server
 const SERVER_PORT = process.env.PORT || 5000;
