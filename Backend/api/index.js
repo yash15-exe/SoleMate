@@ -1,12 +1,12 @@
 import express from "express";
 import { config } from "dotenv";
 import cors from "cors";
-import { dbConnect } from "./Utilities/DbConnect.js";
-import productRoutes from "./Routes/products.routes.js";
-import authRoutes from "./Routes/auth.routes.js";
+import { dbConnect } from "../Utilities/DbConnect.js";
+import productRoutes from "../Routes/products.routes.js";
+import authRoutes from "../Routes/auth.routes.js";
 import bodyParser from 'body-parser';
-import paymentRoutes from "./Routes/payment.routes.js";
-import orderRoutes from "./Routes/order.routes.js";
+import paymentRoutes from "../Routes/payment.routes.js";
+import orderRoutes from "../Routes/order.routes.js";
 
 const app = express();
 config();
@@ -25,8 +25,8 @@ const corsOptions = {
   credentials: true // Allow credentials
 };
 
-app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // Handle preflight requests
+app.use(cors(corsOptions));
 
 // Define your routes
 app.use("/api", authRoutes);
