@@ -1,12 +1,12 @@
 import express from "express";
 import { config } from "dotenv";
 import cors from "cors";
-import { dbConnect } from "../Utilities/DbConnect.js";
-import productRoutes from "../Routes/products.routes.js";
-import authRoutes from "../Routes/auth.routes.js";
+import { dbConnect } from "./Utilities/DbConnect.js";
+import productRoutes from "./Routes/products.routes.js";
+import authRoutes from "./Routes/auth.routes.js";
 import bodyParser from 'body-parser';
-import paymentRoutes from "../Routes/payment.routes.js";
-import orderRoutes from "../Routes/order.routes.js";
+import paymentRoutes from "./Routes/payment.routes.js";
+import orderRoutes from "./Routes/order.routes.js";
 
 const app = express();
 config();
@@ -33,9 +33,7 @@ app.use("/api", authRoutes);
 app.use("/api", productRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", orderRoutes);
-app.get("/", (req, res)=>{
-  res.send("Hello from soleMate")
-})
+
 
 // Start the server
 const SERVER_PORT = process.env.PORT || 5000;
