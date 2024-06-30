@@ -15,7 +15,7 @@ function LoginPage() {
 
     const onSubmitLogin = async (data) => {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, data);
+            const response = await axios.post(`$https://solemate-api.vercel.app/api/auth/login`, data);
             const { token, user } = response.data;
             storeTokenInCookie(token);
             dispatch(login({ user }));
