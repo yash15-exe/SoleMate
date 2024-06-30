@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { addToCart, getCart, loginUser, registerUser } from "../Controllers/userController.js";
-import { createFeedback, deleteFeedback, getFeedbacks } from "../Controllers/feedbackCOntroller.js";
+import { createFeedback, deleteFeedback, getFeedbacks } from "../Controllers/feedbackController.js";
 
 const router = Router()
 
