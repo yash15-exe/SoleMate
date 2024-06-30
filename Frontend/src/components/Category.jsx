@@ -9,14 +9,14 @@ function Category() {
   }
 
   const collections = [
-    { name: "Running", imageSrc: "../src/assets/running.jpg" },
-    { name: "College", imageSrc: "../src/assets/collegeSHoe.webp" },
-    { name: "Formals", imageSrc: "../src/assets/formals.jpg" },
-    { name: "Loafers", imageSrc: "../src/assets/loafers.jpg" },
-    { name: "Sneakers", imageSrc: "../src/assets/sneakers.webp" },
-    { name: "Heels", imageSrc: "../src/assets/heels.webp" },
-    { name: "Crocs", imageSrc: "../src/assets/crocs.webp" },
-    { name: "Boots", imageSrc: "../src/assets/boots.jpg" }
+    { name: "Running", imageSrc: "/assets/running.jpg" },
+    { name: "College", imageSrc: "/assets/collegeSHoe.webp" },
+    { name: "Formals", imageSrc: "/assets/formals.jpg" },
+    { name: "Loafers", imageSrc: "/assets/loafers.jpg" },
+    { name: "Sneakers", imageSrc: "/assets/sneakers.webp" },
+    { name: "Heels", imageSrc: "/assets/heels.webp" },
+    { name: "Crocs", imageSrc: "/assets/crocs.webp" },
+    { name: "Boots", imageSrc: "/assets/boots.jpg" }
   ];
 
   return (

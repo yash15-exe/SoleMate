@@ -9,10 +9,10 @@ function Collection() {
   }
 
   const collections = [
-    { name: "Men", imageSrc: "../src/assets/mensImage.webp" },
-    { name: "Women", imageSrc: "../src/assets/womenShoes.webp" },
-    { name: "Teen", imageSrc: "../src/assets/teenShoes.jpg" },
-    { name: "Traditionals", imageSrc: "../src/assets/traditional.webp" },
+    { name: "Men", imageSrc: "/assets/mensImage.webp" },
+    { name: "Women", imageSrc: "/assets/womenShoes.webp" },
+    { name: "Teen", imageSrc: "/assets/teenShoes.jpg" },
+    { name: "Traditionals", imageSrc: "/assets/traditional.webp" },
   ];
 
   return (
