@@ -1,13 +1,9 @@
 import React from 'react'
 
-import NavBar from '../components/NavBar';
-import Carousel from '../components/Carousel';
-import SearchBar from '../components/SearchBar';
 import Category from '../components/Category';
 import Collection from '../components/Collection';
 import Banner from '../components/Banner';
 import Testimonials from '../components/Testimonials';
-import ProductCard from '../components/ProductCard';
 
 const dummyProducts = [
   {

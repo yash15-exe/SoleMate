@@ -23,7 +23,7 @@ const ContactUsPage = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8000/api/feedback', feedbackData);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/feedback`, feedbackData);
       toast.success(response.data.message);
       setFeedback('');
     } catch (err) {

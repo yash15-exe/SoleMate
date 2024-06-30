@@ -15,7 +15,7 @@ function LoginPage() {
 
     const onSubmitLogin = async (data) => {
         try {
-            const response = await axios.post('http://localhost:8000/api/auth/login', data);
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, data);
             const { token, user } = response.data;
             storeTokenInCookie(token);
             dispatch(login({ user }));
@@ -28,7 +28,7 @@ function LoginPage() {
 
     const onSubmitRegister = async (data) => {
         try {
-            const response = await axios.post("http://localhost:8000/api/auth/register", data);
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, data);
             console.log(response.data); // Log response for registration success
             setIsRegister(false); // Automatically switch to login after registration
         } catch (error) {
@@ -81,7 +81,7 @@ function LoginPage() {
                             />
                             {errorsRegister.confirmPassword && <p className="text-red-500 text-sm mt-1">{errorsRegister.confirmPassword.message}</p>}
                         </div>
-                        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300">Register</button>
+                        <button type="submit" className="w-full bg-black text-white p-2 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black transition duration-300">Register</button>
                         <button 
                             type="button" 
                             className="w-full mt-4 text-blue-500 hover:underline"
