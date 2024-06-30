@@ -14,12 +14,11 @@ app.use(bodyParser.json()); // Parse application/json
 app.use(bodyParser.urlencoded({ extended: true })); 
 await dbConnect(process.env.DATABASE_URL);
 
-const corsOptions = {
-  origin: '*', // Allow all origins, you can restrict this to specific domains
-  optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: 'https://solemate-app.vercel.app/*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 
 app.use("/api", authRoutes)
