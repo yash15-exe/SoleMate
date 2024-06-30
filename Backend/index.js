@@ -14,12 +14,19 @@ app.use(bodyParser.json()); // Parse application/json
 app.use(bodyParser.urlencoded({ extended: true })); 
 await dbConnect(process.env.DATABASE_URL);
 
-app.use(cors());
+const corsOptions = {
+  origin: '*', // Allow all origins, you can restrict this to specific domains
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
 
 app.use("/api", authRoutes)
 app.use("/api", productRoutes)
 app.use("/api",paymentRoutes)
 app.use("/api", orderRoutes)
-app.listen(process.env.SERVER_PORT, () => {
+const SERVER_PORT = process.env.PORT || 5000
+app.listen(SERVER_PORT, () => {
   console.log(`Server listening on port ${process.env.SERVER_PORT}`);
 });
