@@ -33,6 +33,9 @@ app.use("/api", authRoutes);
 app.use("/api", productRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", orderRoutes);
+app.use("/", (req, res)=>{
+  res.send("Hello from soleMate")
+})
 
 // Start the server
 const SERVER_PORT = process.env.PORT || 5000;
