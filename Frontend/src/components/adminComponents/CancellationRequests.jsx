@@ -12,7 +12,7 @@ function CancellationRequests() {
     // Fetch orders with cancellation requests
     const fetchOrders = async () => {
       try {
-        const response = await axios.post('http://localhost:8000/api/order/getOrdersForCancellationRequests');
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getOrdersForCancellationRequests`);
         setOrders(response.data.orders);
         setLoading(false);
       } catch (err) {
@@ -27,7 +27,7 @@ function CancellationRequests() {
 
   const approveCancellation = async (orderId) => {
     try {
-      const response = await axios.post('http://localhost:8000/api/order/cancelOrder', { orderId });
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/cancelOrder`, { orderId });
       // Update the UI to reflect the cancellation
       setOrders((prevOrders) =>
         prevOrders.filter((order) => order._id !== orderId)

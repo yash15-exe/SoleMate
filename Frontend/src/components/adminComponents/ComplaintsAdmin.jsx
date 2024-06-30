@@ -11,7 +11,7 @@ function Feedback() {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.post('http://localhost:8000/api/getFeedback');
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/getFeedback`);
         setFeedbacks(response.data);
         setLoading(false);
       } catch (err) {
@@ -25,7 +25,7 @@ function Feedback() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.post(`http://localhost:8000/api/deleteFeedback`, { id });
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/deleteFeedback`, { id });
       setFeedbacks(feedbacks.filter((feedback) => feedback._id !== id));
       toast.success('Feedback deleted successfully');
     } catch (err) {
