@@ -13,7 +13,7 @@ function ProductDetails() {
 
   useEffect(() => {
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/api/product`, { productId })
+      .post(`/api/product`, { productId })
       .then((res) => res.data.product)
       .then((data) => {
         setProduct(data);
@@ -29,7 +29,7 @@ function ProductDetails() {
     if (isLoggedIn) {
       const username = user.username;
       try {
-        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/addToCart`, { productId, username });
+        await axios.post(`/api/auth/addToCart`, { productId, username });
         navigate("/cart");
       } catch (error) {
         console.error("Error adding to cart:", error);

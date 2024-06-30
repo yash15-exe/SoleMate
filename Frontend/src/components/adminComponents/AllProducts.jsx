@@ -11,7 +11,7 @@ function AllProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/products/getAllProducts`); // Adjust the endpoint URL according to your setup
+        const response = await axios.post(`/api/products/getAllProducts`); // Adjust the endpoint URL according to your setup
         setProducts(response.data.allProducts);
       } catch (err) {
         setError('Failed to fetch products');
@@ -28,7 +28,7 @@ function AllProducts() {
     const confirmed = window.confirm('Are you sure you want to unlist this product?');
     if (confirmed) {
       try {
-        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/products/unlistProducts`, { productId }); // Adjust the endpoint URL according to your setup
+        await axios.post(`/api/products/unlistProducts`, { productId }); // Adjust the endpoint URL according to your setup
         setProducts(prevProducts => prevProducts.filter(product => product._id !== productId));
         toast.success('Product unlisted successfully');
       } catch (error) {

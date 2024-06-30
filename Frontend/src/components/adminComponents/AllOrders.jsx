@@ -11,7 +11,7 @@ function AllOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getAllAdminOrders`); // Adjust the endpoint URL according to your setup
+        const response = await axios.post(`/api/order/getAllAdminOrders`); // Adjust the endpoint URL according to your setup
         setOrders(response.data.orders);
       } catch (err) {
         setError('Failed to fetch orders');
@@ -26,7 +26,7 @@ function AllOrders() {
 
   const handleStatusChange = async (orderId, newStatus) => {
     try {
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/updateOrderStatus`, { newStatus, orderId });
+      await axios.post(`/api/order/updateOrderStatus`, { newStatus, orderId });
       setOrders(prevOrders =>
         prevOrders.map(order =>
           order._id === orderId ? { ...order, orderStatus: newStatus } : order
@@ -43,7 +43,7 @@ function AllOrders() {
     const confirmed = window.confirm('Are you sure you want to cancel this order?');
     if (confirmed) {
       try {
-        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/cancelOrder`, { orderId });
+        await axios.post(`/api/order/cancelOrder`, { orderId });
         setOrders(prevOrders =>
           prevOrders.map(order =>
             order._id === orderId ? { ...order, orderStatus: 'cancelled' } : order

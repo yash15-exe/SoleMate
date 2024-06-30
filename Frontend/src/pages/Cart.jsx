@@ -12,7 +12,7 @@ function Cart() {
 
   useEffect(() => {
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/getCartItems`, { username })
+      .post(`/api/auth/getCartItems`, { username })
       .then((res) => res.data)
       .then((data) => {
         setCartProducts(data.cartItems);

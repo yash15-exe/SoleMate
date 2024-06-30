@@ -78,7 +78,7 @@ function CheckoutForm() {
       const paymentIntentId = await fetchPaymentIntent(amount);
 
       const { data } = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/order/createOrder`,
+        `/api/order/createOrder`,
         {
           products,
           orderAddress,
@@ -96,11 +96,11 @@ function CheckoutForm() {
   };
 
   const deleteOrder = async (orderId) => {
-    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/deleteOrder`, { orderId });
+    await axios.post(`/api/order/deleteOrder`, { orderId });
   };
 
   const fetchPaymentIntent = async (totalAmount) => {
-    const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/payment`, {
+    const { data } = await axios.post(`/api/payment`, {
       amount: totalAmount * 100, // Amount in smallest currency unit (e.g., cents)
     });
     setClientSecret(data.paymentIntent.client_secret);

@@ -20,7 +20,7 @@ const AddProductForm = () => {
     formData.append('file', data.file[0]);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/products/addProducts`, formData, {
+      const response = await axios.post(`/api/products/addProducts`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
