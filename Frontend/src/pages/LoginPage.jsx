@@ -43,7 +43,7 @@ function LoginPage() {
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             {isRegister ? (
                 <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-                    <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+                    <h2 className="text-2xl font-bold mb-6 text-center">Register To Solemate</h2>
                     <form onSubmit={handleSubmitRegister(onSubmitRegister)}>
                         <div className="mb-4">
                             <label className="block text-gray-700">Username</label>
@@ -93,7 +93,7 @@ function LoginPage() {
                 </div>
             ) : (
                 <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-                    <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+                    <h2 className="text-2xl font-bold mb-6 text-center">Login To Solemate</h2>
                     <form onSubmit={handleSubmitLogin(onSubmitLogin)}>
                         <div className="mb-4">
                             <label className="block text-gray-700">Username</label>
