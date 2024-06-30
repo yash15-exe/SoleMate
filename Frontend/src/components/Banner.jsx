@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 function Banner() {
   const slides = [
-    "../src/assets/New1.png",
-    "../src/assets/New2.png",
-    "../src/assets/New3.png",
-    "../src/assets/New4.png",
-    "../src/assets/New5.png",
+    "/assets/New1.png",
+    "/assets/New2.png",
+    "/assets/New3.png",
+    "/assets/New4.png",
+    "/assets/New5.png",
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
