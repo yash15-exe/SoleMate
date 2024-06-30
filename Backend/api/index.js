@@ -33,7 +33,7 @@ app.use("/api", authRoutes);
 app.use("/api", productRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", orderRoutes);
-app.use("/", (req, res)=>{
+app.get("/", (req, res)=>{
   res.send("Hello from soleMate")
 })
 
