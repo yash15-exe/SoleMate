@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 await dbConnect(process.env.DATABASE_URL);
 
 app.use(cors({
-  origin: 'https://solemate-app.vercel.app', // Allow requests from your frontend origin
-  methods: ['GET', 'POST'],
+  origin: '*', // Allow requests from your frontend origin
+  methods: ['GET', 'POST','OPTIONS'],
   credentials:true
 }));
 
