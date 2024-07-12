@@ -12,7 +12,7 @@ function SearchBar() {
   };
 
   return (
-    <div className="flex w-full  mt-2 md:w-3/5 lg:w-1/2 mx-auto border rounded overflow-hidden">
+    <div className="flex w-[90vw]  mt-2 md:w-3/5 lg:w-1/2 mx-auto border rounded overflow-hidden">
       <input
         type="text"
         value={searchTerm}

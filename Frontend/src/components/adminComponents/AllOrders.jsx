@@ -13,6 +13,7 @@ function AllOrders() {
       try {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getAllAdminOrders`); // Adjust the endpoint URL according to your setup
         setOrders(response.data.orders);
+        toast.success('Orders fetched successfully');
       } catch (err) {
         setError('Failed to fetch orders');
         toast.error('Failed to fetch orders');

@@ -37,7 +37,16 @@ function ProductCard({ product }) {
         }
       }
 
-      return `rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.5)`;
+      // Check if dominant color is close to white
+      if (
+        dominantColor.r > 220 &&
+        dominantColor.g > 220 &&
+        dominantColor.b > 220
+      ) {
+        return "rgba(128, 128, 128, 0.5)"; // Gray shadow
+      } else {
+        return `rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.5)`;
+      }
     };
 
     const img = new Image();
@@ -51,7 +60,7 @@ function ProductCard({ product }) {
 
   return (
     <div
-      className="h-96 w-64 rounded-lg overflow-hidden relative"
+      className="h-[25rem] w-72 rounded-lg overflow-hidden relative"
       style={{ boxShadow: `0 8px 10px 0 ${shadowColor}` }}
     >
       <img
@@ -60,11 +69,11 @@ function ProductCard({ product }) {
         className="h-48 w-full object-cover"
       />
 
-      <div className="absolute bottom-0 left-0 h-48 right-0 p-4 bg-white rounded-b-lg">
+      <div className="absolute bottom-0 left-0 h-52 right-0 p-4 bg-white rounded-b-lg">
         <div className="font-bold text-lg mb-2 font-poppins">
           {product.name}
         </div>
-        <div className="text-gray-700 text-base mb-4">
+        <div className="text-gray-700 text-base mb-4 mt-2 ">
           {product.description}
         </div>
 

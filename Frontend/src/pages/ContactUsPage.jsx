@@ -24,7 +24,7 @@ const ContactUsPage = () => {
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/feedback`, feedbackData);
-      toast.success(response.data.message);
+      toast.success('Feedback submitted successfully.');
       setFeedback('');
     } catch (err) {
       console.error('Error submitting feedback:', err);

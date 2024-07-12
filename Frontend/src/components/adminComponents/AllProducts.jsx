@@ -13,6 +13,7 @@ function AllProducts() {
       try {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/products/getAllProducts`); // Adjust the endpoint URL according to your setup
         setProducts(response.data.allProducts);
+        toast.success('Products fetched successfully');
       } catch (err) {
         setError('Failed to fetch products');
         toast.error('Failed to fetch products');
@@ -53,31 +54,33 @@ function AllProducts() {
       {products.length === 0 ? (
         <div>No products found</div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {products.map(product => (
-            <div key={product._id} className="border p-4 rounded shadow">
-              <h2 className="text-xl font-bold mb-2">{product.name}</h2>
-              <div className="mb-2"><strong>Brand:</strong> {product.productBrand}</div>
-              <div className="mb-2"><strong>Description:</strong> {product.description}</div>
-              <div className="mb-2"><strong>Price:</strong> ${product.price}</div>
-              <div className="mb-2">
-                <img src={product.imageUrl} alt={product.name} className="w-full h-auto" />
+        <div className="overflow-auto h-[80vh]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {products.map(product => (
+              <div key={product._id} className="border p-4 rounded shadow">
+                <h2 className="text-xl font-bold mb-2">{product.name}</h2>
+                <div className="mb-2"><strong>Brand:</strong> {product.productBrand}</div>
+                <div className="mb-2"><strong>Description:</strong> {product.description}</div>
+                <div className="mb-2"><strong>Price:</strong> ${product.price}</div>
+                <div className="mb-2">
+                  <img src={product.imageUrl} alt={product.name} className="w-full h-auto" />
+                </div>
+                <div className="mb-2"><strong>Available Units:</strong> {product.availableUnits}</div>
+                <div className="mb-2"><strong>Units Sold:</strong> {product.unitsSold}</div>
+                <div className="mb-2">
+                  <strong>Rating:</strong> {product.rating.averageRating.toFixed(1)} ({product.rating.ratingCount} reviews)
+                </div>
+                <div className="mt-4">
+                  <button
+                    onClick={() => handleUnlistProduct(product._id)}
+                    className="bg-red-500 text-white px-4 py-2 rounded"
+                  >
+                    Unlist Product
+                  </button>
+                </div>
               </div>
-              <div className="mb-2"><strong>Available Units:</strong> {product.availableUnits}</div>
-              <div className="mb-2"><strong>Units Sold:</strong> {product.unitsSold}</div>
-              <div className="mb-2">
-                <strong>Rating:</strong> {product.rating.averageRating.toFixed(1)} ({product.rating.ratingCount} reviews)
-              </div>
-              <div className="mt-4">
-                <button
-                  onClick={() => handleUnlistProduct(product._id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                >
-                  Unlist Product
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>

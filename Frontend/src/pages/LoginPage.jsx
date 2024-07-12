@@ -5,6 +5,8 @@ import { storeTokenInCookie } from '../../Utilities/CookieUtility';
 import { useDispatch } from "react-redux";
 import { login } from '../../store/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginPage() {
     const { register: registerLogin, handleSubmit: handleSubmitLogin, formState: { errors: errorsLogin } } = useForm();
@@ -15,15 +17,15 @@ function LoginPage() {
 
     const onSubmitLogin = async (data) => {
         try {
-            console.log(data);
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, data);
             const { token, user } = response.data;
             storeTokenInCookie(token);
             dispatch(login({ user }));
             navigate("/");
+            toast.success('Login successful.');
         } catch (error) {
             console.error('Error logging in:', error);
-            alert('Failed to login. Please check your credentials and try again.');
+            toast.error('Failed to login. Please check your credentials and try again.');
         }
     };
 
@@ -32,9 +34,10 @@ function LoginPage() {
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, data);
             console.log(response.data); // Log response for registration success
             setIsRegister(false); // Automatically switch to login after registration
+            toast.success('Registration successful. Please login to continue.');
         } catch (error) {
             console.error('Error registering:', error);
-            alert('Failed to register. Please try again.');
+            toast.error('Failed to register. Please try again.');
         }
     };
 

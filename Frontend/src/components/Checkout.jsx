@@ -1,39 +1,28 @@
-import {
-  CardNumberElement,
-  CardExpiryElement,
-  CardCvcElement,
-  useElements,
-  useStripe,
-  Elements,
-} from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CARD_OPTIONS = {
   style: {
     base: {
-      iconColor: "#c4f0ff",
-      color: "#000",
+      iconColor: '#c4f0ff',
+      color: '#000',
       fontWeight: 500,
-      fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-      fontSize: "16px",
-      fontSmoothing: "antialiased",
-      ":-webkit-autofill": { color: "#fce883" },
-      "::placeholder": { color: "#87bbfd" },
+      fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+      fontSize: '16px',
+      fontSmoothing: 'antialiased',
+      ':-webkit-autofill': { color: '#fce883' },
+      '::placeholder': { color: '#87bbfd' },
     },
     invalid: {
-      iconColor: "#ffc7ee",
-      color: "#ffc7ee",
+      iconColor: '#ffc7ee',
+      color: '#ffc7ee',
     },
   },
-  iconStyle: "solid",
+  iconStyle: 'solid',
 };
 
 function CheckoutForm() {
@@ -43,22 +32,19 @@ function CheckoutForm() {
   const { CartProducts } = location.state;
   const [clientSecret, setClientSecret] = useState();
   const [shippingDetails, setShippingDetails] = useState({
-    name: "",
-    address: "",
-    city: "",
-    state: "",
-    postalCode: "",
-    country: "",
+    name: '',
+    address: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    country: '',
   });
   const stripe = useStripe();
   const elements = useElements();
   const [orderId, setOrderId] = useState(null);
 
   useEffect(() => {
-    const totalAmount = CartProducts.reduce(
-      (sum, cartProduct) => sum + cartProduct.price,
-      0
-    );
+    const totalAmount = CartProducts.reduce((sum, cartProduct) => sum + cartProduct.price, 0);
     setAmount(totalAmount);
   }, [CartProducts]);
 
@@ -77,20 +63,17 @@ function CheckoutForm() {
     try {
       const paymentIntentId = await fetchPaymentIntent(amount);
 
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/order/createOrder`,
-        {
-          products,
-          orderAddress,
-          userId,
-          customerName,
-          paymentIntentId, // Include paymentIntentId in the request body
-        }
-      );
+      const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/createOrder`, {
+        products,
+        orderAddress,
+        userId,
+        customerName,
+        paymentIntentId,
+      });
 
       return data.orderId;
     } catch (error) {
-      console.error("Error creating order:", error);
+      console.error('Error creating order:', error);
       throw error;
     }
   };
@@ -101,7 +84,7 @@ function CheckoutForm() {
 
   const fetchPaymentIntent = async (totalAmount) => {
     const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/payment`, {
-      amount: totalAmount * 100, // Amount in smallest currency unit (e.g., cents)
+      amount: totalAmount * 100,
     });
     setClientSecret(data.paymentIntent.client_secret);
 
@@ -143,17 +126,17 @@ function CheckoutForm() {
         console.log(result.error.message);
         toast.error(result.error.message);
         await deleteOrder(newOrderId);
-        navigate("/orders/success");
+        navigate('/orders/success');
       } else {
-        if (result.paymentIntent.status === "succeeded") {
-          console.log("Payment successful!");
-          toast.success("Payment successful!");
-          navigate("/orders/success");
+        if (result.paymentIntent.status === 'succeeded') {
+          console.log('Payment successful!');
+          toast.success('Payment successful!');
+          navigate('/orders/success');
         }
       }
     } catch (error) {
-      console.error("Error during payment or order creation:", error);
-      toast.error("Error during payment or order creation.");
+      console.error('Error during payment or order creation:', error);
+      toast.error('Error during payment or order creation.');
       if (orderId) {
         await deleteOrder(orderId);
       }
@@ -174,9 +157,7 @@ function CheckoutForm() {
           <h3 className="text-xl font-semibold mb-4">Shipping Address</h3>
           <form className="space-y-4">
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Name
-              </label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
               <input
                 type="text"
                 name="name"
@@ -187,9 +168,7 @@ function CheckoutForm() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Address
-              </label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">Address</label>
               <input
                 type="text"
                 name="address"
@@ -200,9 +179,7 @@ function CheckoutForm() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                City
-              </label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">City</label>
               <input
                 type="text"
                 name="city"
@@ -213,9 +190,7 @@ function CheckoutForm() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                State
-              </label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">State</label>
               <input
                 type="text"
                 name="state"
@@ -226,9 +201,7 @@ function CheckoutForm() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Postal Code
-              </label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">Postal Code</label>
               <input
                 type="text"
                 name="postalCode"
@@ -239,9 +212,7 @@ function CheckoutForm() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Country
-              </label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">Country</label>
               <input
                 type="text"
                 name="country"
@@ -257,26 +228,20 @@ function CheckoutForm() {
           <h3 className="text-xl font-semibold mb-4">Payment</h3>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Card Number
-              </label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">Card Number</label>
               <div className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 <CardNumberElement options={CARD_OPTIONS} />
               </div>
             </div>
             <div className="mb-4 flex">
               <div className="w-1/2 pr-3">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Expiry Date
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">Expiry Date</label>
                 <div className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                   <CardExpiryElement options={CARD_OPTIONS} />
                 </div>
               </div>
               <div className="w-1/2 pl-3">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  CVC
-                </label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">CVC</label>
                 <div className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                   <CardCvcElement options={CARD_OPTIONS} />
                 </div>
@@ -285,10 +250,10 @@ function CheckoutForm() {
             <div className="flex items-center justify-between mt-6">
               <button
                 type="submit"
-                className="bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-gray-700"
                 disabled={!stripe}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Pay ₹{amount.toFixed(2)}
+                Pay ${amount}
               </button>
             </div>
           </form>
@@ -299,12 +264,4 @@ function CheckoutForm() {
   );
 }
 
-const Checkout = () => {
-  return (
-    <Elements stripe={stripePromise}>
-      <CheckoutForm />
-    </Elements>
-  );
-};
-
-export default Checkout;
+export default CheckoutForm;

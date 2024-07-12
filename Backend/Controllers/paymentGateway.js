@@ -3,13 +3,15 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const paymentGateway = async (req, res) => {
+  console.log(process.env.STRIPE_SECRET_KEY);
   const { amount } = req.body;
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
+      
       amount,
       currency: "inr",
-    });
+    },{apiKey:process.env.STRIPE_SECRET_KEY});
     res.status(200).send({
       paymentIntent,
     });
@@ -19,7 +21,7 @@ export const paymentGateway = async (req, res) => {
       message: "Intent creation failed",
       error,
     });
-    console.log("Payment intent creation failed");
+    console.log("Payment intent creation failed",error);
   }
 };
 

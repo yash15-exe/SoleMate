@@ -11,9 +11,9 @@ function Category() {
   const collections = [
     { name: "Running", imageSrc: "/assets/running.jpg" },
     { name: "College", imageSrc: "/assets/collegeSHoe.webp" },
-    { name: "Formals", imageSrc: "/assets/formals.jpg" },
-    { name: "Loafers", imageSrc: "/assets/loafers.jpg" },
-    { name: "Sneakers", imageSrc: "/assets/sneakers.webp" },
+    { name: "Formal", imageSrc: "/assets/formals.jpg" },
+    { name: "Loafer", imageSrc: "/assets/loafers.jpg" },
+    { name: "Sneaker", imageSrc: "/assets/sneakers.webp" },
     { name: "Heels", imageSrc: "/assets/heels.webp" },
     { name: "Crocs", imageSrc: "/assets/crocs.webp" },
     { name: "Boots", imageSrc: "/assets/boots.jpg" }

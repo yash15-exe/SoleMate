@@ -14,6 +14,7 @@ function CancellationRequests() {
       try {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getOrdersForCancellationRequests`);
         setOrders(response.data.orders);
+        toast.success('Cancellation requests fetched successfully');
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -32,7 +33,7 @@ function CancellationRequests() {
       setOrders((prevOrders) =>
         prevOrders.filter((order) => order._id !== orderId)
       );
-      toast.success(response.data.message);
+      toast.success(response.data.message || 'Order cancelled successfully');
     } catch (err) {
       console.error('Error cancelling order:', err);
       toast.error('Error cancelling order');
@@ -40,7 +41,7 @@ function CancellationRequests() {
   };
 
   if (loading) return <div className="text-center mt-8">Loading...</div>;
-  if (error) return <div className="text-center mt-8 text-black font-poppins ">No Requests found</div>;
+  if (error) return <div className="text-center mt-8 text-black font-poppins">No Requests found</div>;
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-5">

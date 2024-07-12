@@ -183,8 +183,8 @@ function NavBar() {
           )}
         </div>
       </nav>
-      <div>
-        <ul className="flex md:hidden flex-grow justify-between">
+      <div className="flex w-full justify-center">
+        <ul className="flex md:hidden  flex-grow justify-between">
           {menuItems.map((item, index) => (
             <li
               key={index}
@@ -192,7 +192,7 @@ function NavBar() {
               onMouseEnter={() => setHoveredItem(index)}
               onMouseLeave={() => setHoveredItem(null)}
             >
-              <div className="flex">
+              <div className="flex justify-center">
                 {item.name}
                 {hoveredItem != index && (
                   <svg

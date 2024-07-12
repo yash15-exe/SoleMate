@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CancelledOrders() {
   const [orders, setOrders] = useState([]);
@@ -9,10 +11,12 @@ function CancelledOrders() {
   useEffect(() => {
     const fetchCancelledOrders = async () => {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getAllAdminOrders`,{status:"cancelled"}); // Adjust the endpoint URL according to your setup
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getAllAdminOrders`, { status: "cancelled" });
         setOrders(response.data.orders || []);
+        toast.success('Cancelled orders fetched successfully');
       } catch (err) {
         setError('Failed to fetch cancelled orders');
+        toast.error('Failed to fetch cancelled orders');
       } finally {
         setLoading(false);
       }
@@ -31,6 +35,7 @@ function CancelledOrders() {
 
   return (
     <div className="container mx-auto p-4">
+      <ToastContainer />
       <h1 className="text-2xl font-bold mb-4">Cancelled Orders</h1>
       {orders.length === 0 ? (
         <div>No cancelled orders found</div>

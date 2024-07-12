@@ -1,16 +1,16 @@
-import React from 'react'
+import React from "react";
 
-
-import Category from '../components/Category';
-import Collection from '../components/Collection';
-import Banner from '../components/Banner';
-import Testimonials from '../components/Testimonials';
+import Category from "../components/Category";
+import Collection from "../components/Collection";
+import Banner from "../components/Banner";
+import Testimonials from "../components/Testimonials";
 
 const dummyProducts = [
   {
     name: "Classic White T-Shirt rjgfrejslfjlrejlfjrgsrekmf;lrel;fkel;rkf   fewml;fkew",
     productBrand: "FashionHub",
-    description: "A classic white t-shirt made from 100% cotton. Perfect for casual wear.",
+    description:
+      "A classic white t-shirt made from 100% cotton. Perfect for casual wear.",
     price: 499,
     category: "Clothing",
     imageUrl: "../src/assets/p2153171.avif",
@@ -25,7 +25,8 @@ const dummyProducts = [
   {
     name: "Wireless Earbuds",
     productBrand: "TechGear",
-    description: "High-quality wireless earbuds with noise cancellation and long battery life.",
+    description:
+      "High-quality wireless earbuds with noise cancellation and long battery life.",
     price: 2999,
     category: "Electronics",
     imageUrl: "../src/assets/p2153171.avif",
@@ -40,7 +41,8 @@ const dummyProducts = [
   {
     name: "Sports Water Bottle",
     productBrand: "FitLife",
-    description: "Durable sports water bottle with a built-in filter. Ideal for gym and outdoor activities.",
+    description:
+      "Durable sports water bottle with a built-in filter. Ideal for gym and outdoor activities.",
     price: 799,
     category: "Accessories",
     imageUrl: "../src/assets/p2153171.avif",
@@ -55,7 +57,8 @@ const dummyProducts = [
   {
     name: "Gaming Laptop",
     productBrand: "GamerZone",
-    description: "High-performance gaming laptop with the latest graphics card and fast processor.",
+    description:
+      "High-performance gaming laptop with the latest graphics card and fast processor.",
     price: 99999,
     category: "Electronics",
     imageUrl: "../src/assets/p2153171.avif",
@@ -70,7 +73,8 @@ const dummyProducts = [
   {
     name: "Leather Wallet",
     productBrand: "StyleCraft",
-    description: "Premium leather wallet with multiple card slots and a coin pocket.",
+    description:
+      "Premium leather wallet with multiple card slots and a coin pocket.",
     price: 1999,
     category: "Accessories",
     imageUrl: "../src/assets/p2153171.avif",
@@ -81,26 +85,23 @@ const dummyProducts = [
       totalRating: 90,
       averageRating: 4.5, // totalRating / ratingCount = 90 / 20
     },
-  }
+  },
 ];
-
-
 
 function Home() {
   return (
     <>
-    <div className='w-full flex flex-col justify-center'>
-      <div className='flex justify-center'><Banner/></div>
-  
-    <Collection/>
-    <Category/>
-    <Testimonials/>
-    
-    </div>
-    
-   </>
-    
-  )
+      <div className="w-full flex flex-col justify-center mt-14 lg:mt-1">
+        <div className="flex justify-center">
+          <Banner />
+        </div>
+
+        <Collection />
+        <Category />
+        <Testimonials />
+      </div>
+    </>
+  );
 }
 
-export default Home
+export default Home;

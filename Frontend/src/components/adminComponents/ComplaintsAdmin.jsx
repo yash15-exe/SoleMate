@@ -13,9 +13,11 @@ function Feedback() {
       try {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/getFeedback`);
         setFeedbacks(response.data);
+        toast.success('Feedback fetched successfully');
         setLoading(false);
       } catch (err) {
         setError(err.message);
+        toast.error('Failed to fetch feedback');
         setLoading(false);
       }
     };
@@ -36,6 +38,7 @@ function Feedback() {
 
   return (
     <div className="p-4 font-poppins">
+      <ToastContainer position="bottom-right" autoClose={3000} hideProgressBar={true} />
       <h1 className="text-2xl font-bold mb-4">Feedback</h1>
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">Error: {error}</p>}
@@ -58,7 +61,6 @@ function Feedback() {
           ))}
         </ul>
       )}
-      <ToastContainer position="bottom-right" autoClose={3000} hideProgressBar={true} />
     </div>
   );
 }

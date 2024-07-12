@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Analytics() {
   const [orders, setOrders] = useState([]);
@@ -14,8 +16,10 @@ function Analytics() {
       try {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getAllAdminOrders`);
         setOrders(response.data.orders);
+        toast.success('Orders fetched successfully');
       } catch (err) {
         setError('Failed to fetch orders');
+        toast.error('Failed to fetch orders');
       } finally {
         setLoading(false);
       }
@@ -27,6 +31,7 @@ function Analytics() {
   useEffect(() => {
     if (orders.length > 0) {
       calculateAnalytics();
+      toast.success('Analytics calculated successfully');
     }
   }, [orders]);
 
@@ -60,6 +65,7 @@ function Analytics() {
 
   return (
     <div className="container mx-auto p-4 font-poppins">
+      <ToastContainer />
       <h1 className="text-2xl font-bold mb-4">Analytics</h1>
       <div className="mb-4">
         <h2 className="text-xl">Total Sales: ₹{totalSales.toFixed(2)}</h2>

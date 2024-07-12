@@ -57,16 +57,16 @@ function ProductDetails() {
   }
 
   return (
-    <div className="container mx-auto p-4 bg-gray-100">
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 border-r pr-4">
+    <div className="container mx-auto p-2 mt-10 lg:mt-16 bg-gray-100">
+      <div className="flex flex-col md:flex-row  items-center justify-center">
+        <div className="md:w-1/2 border-r mb-4 lg:mb-0 flex items-center justify-center px-3 ">
           <img
             src={product.imageUrl}
             alt={product.name}
             className="w-full h-auto object-cover rounded-lg hover:opacity-75 transition-opacity duration-300"
           />
         </div>
-        <div className="md:w-1/2 md:pl-4 bg-gray-200 p-3 rounded-lg ">
+        <div className=" w-[90vw] md:w-1/2 md:pl-4 bg-gray-200 p-3 rounded-lg ">
           <div className="border-b mb-4 pb-4">
             <h1 className="text-3xl font-bold mb-2 text-black">{product.name}</h1>
             <p className="text-xl font-semibold text-gray-700 mb-2">{product.productBrand}</p>

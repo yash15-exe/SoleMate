@@ -71,7 +71,7 @@ function ProductDisplay() {
   };
 
   return (
-    <div className="p-4 font-poppins">
+    <div className="p-4 font-poppins mt-10 lg:mt-20">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold font-montserrat">Products</h1>
       </div>
@@ -133,18 +133,19 @@ function ProductDisplay() {
           </div>
         </div>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="flex justify-center w-full"><div className="w-full  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-4">
         {products.length === 0 ? (
-          <div className="col-span-full text-center text-gray-500">
+          <div className="col-span-full text-center  text-gray-500">
             No Products Found
           </div>
         ) : (
           sortProducts(products).map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <div className="flex justify-center m-3"><ProductCard key={product.id} product={product} /></div>
+            
           ))
         )}
-      </div>
+      </div></div>
+      
     </div>
   );
 }
