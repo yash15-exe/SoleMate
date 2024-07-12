@@ -2,10 +2,12 @@ import productModel from "../Models/Product.model.js";
 import { removeFromCloudinary, uploadToCloudinary } from "../Utilities/CloudinaryUtility.js";
 
 export const addProducts = async (req, res) => {
-  const product = await req.formData();
+  const product = await req.body;
   console.log(product);
-  const file = product.get("file")
-
+  const file = product.file
+  if(!product){
+    return res.status(500).json("No Product provided")
+  }
   try {
     if (product) {
     
@@ -15,13 +17,13 @@ export const addProducts = async (req, res) => {
       const taxRate = product.taxRate / 100;
 
       const newProduct = new productModel({
-        name: product.get("name"),
-        productBrand: product.get("productBrand"),
-        description: product.get("description"),
-        price: product.get("price"),
+        name: product.name,
+        productBrand: product.productBrand,
+        description: product.description,
+        price: product.price,
         imageUrl: secure_url,
-        availableUnits: product.get("availableUnits"),
-        unitsSold: product.get("unitsSold"),
+        availableUnits: product.availableUnits,
+        unitsSold: product.unitsSold,
         imagePublicId: public_id,
         taxRate: taxRate,
       });
