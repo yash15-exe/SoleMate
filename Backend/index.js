@@ -19,7 +19,7 @@ await dbConnect(process.env.DATABASE_URL);
 
 // Configure CORS
 const corsOptions = {
-  origin: '*', // Allow requests only from your frontend origin
+  origin: 'https://solemate-app.vercel.app', // Allow requests only from your frontend origin
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true // Allow credentials

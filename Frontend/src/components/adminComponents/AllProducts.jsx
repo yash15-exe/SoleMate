@@ -11,7 +11,7 @@ function AllProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.post(`/api/products/getAllProducts`); // Adjust the endpoint URL according to your setup
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/products/getAllProducts`); // Adjust the endpoint URL according to your setup
         setProducts(response.data.allProducts);
       } catch (err) {
         setError('Failed to fetch products');
