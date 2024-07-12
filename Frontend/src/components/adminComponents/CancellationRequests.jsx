@@ -12,7 +12,7 @@ function CancellationRequests() {
     // Fetch orders with cancellation requests
     const fetchOrders = async () => {
       try {
-        const response = await axios.post(`/api/order/getOrdersForCancellationRequests`);
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/getOrdersForCancellationRequests`);
         setOrders(response.data.orders);
         setLoading(false);
       } catch (err) {

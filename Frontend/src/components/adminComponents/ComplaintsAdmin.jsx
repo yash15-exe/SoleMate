@@ -11,7 +11,7 @@ function Feedback() {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.post(`/api/getFeedback`);
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/getFeedback`);
         setFeedbacks(response.data);
         setLoading(false);
       } catch (err) {
