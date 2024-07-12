@@ -3,7 +3,9 @@ import { removeFromCloudinary, uploadToCloudinary } from "../Utilities/Cloudinar
 
 export const addProducts = async (req, res) => {
   const product = req.body;
+  console.log(product);
   const file = product.file
+
   try {
     if (product) {
     
