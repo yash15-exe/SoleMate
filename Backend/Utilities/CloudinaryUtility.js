@@ -1,18 +1,18 @@
 import { v2 as cloudinary } from "cloudinary";
 
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME ,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
-});
 
-export const uploadToCloudinary = async (file, folder) => {
-  const buffer = await file.arrayBuffer();
-  const bytes = Buffer.from(buffer);
+
+export const uploadToCloudinary = async (buffer, folder) => {
+  cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
+  const base64String = buffer.toString('base64');
 
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload(
-      `data:${file.type};base64,${bytes.toString("base64")}`,
+      `data:application/octet-stream;base64,${base64String}`,
       { folder: folder, resource_type: "auto" },
       (error, result) => {
         if (error) {
@@ -35,5 +35,5 @@ export async function removeFromCloudinary(publicId) {
     throw error;
   }
 }
- 
+
 export default cloudinary;

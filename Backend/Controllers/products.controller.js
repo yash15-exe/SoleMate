@@ -1,17 +1,17 @@
 import productModel from "../Models/Product.model.js";
 import { removeFromCloudinary, uploadToCloudinary } from "../Utilities/CloudinaryUtility.js";
 
+
 export const addProducts = async (req, res) => {
-  const product = await req.body;
-  console.log(product);
-  const file = product.file
-  if(!product){
-    return res.status(500).json("No Product provided")
-  }
+  const product = req.body;
   try {
-    if (product) {
-    
-      const { secure_url, public_id } = await uploadToCloudinary(file, "/solemate/products");
+    if (product && req.file.buffer) {
+      const { buffer, mimetype } = req.file; // Access file buffer and mimetype
+      const { secure_url, public_id } = await uploadToCloudinary(buffer, {
+        folder: "products",
+        resource_type: "auto",
+        type: mimetype
+      });
 
       // Convert the tax rate from percentage to a decimal fraction
       const taxRate = product.taxRate / 100;
@@ -34,12 +34,13 @@ export const addProducts = async (req, res) => {
         data: newProduct,
       });
     } else {
-      res.status(400).send({ message: "No product found" });
+      res.status(400).send({ message: "No product found or file not uploaded" });
     }
   } catch (error) {
     console.log(`Error in adding a product: ${error.message}`, error); // Log the error message and the full error object
     res.status(500).send({
-      message: `SERVER Error in adding a product. Error: ${error.message}`, // Only include the error message in the response
+      message: `Server Error in adding a product. Error: ${error
+      }`, // Only include the error message in the response
     });
   }
 };

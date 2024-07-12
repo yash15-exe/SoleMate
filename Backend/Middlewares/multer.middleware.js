@@ -1,7 +1,7 @@
 import multer from "multer";
 
 // Configure multer for file storage
-const storage = multer.diskStorage({
+const storage = multer.memoryStorage({
   destination: (req, file, cb) => {
     cb(null, "./temp"); // Specify the folder to save the uploaded files
   },
@@ -22,10 +22,10 @@ export const multerMiddleware = (req, res, next) => {
   upload.single("file")(req, res, (err) => {
     if (err instanceof multer.MulterError) {
       // A Multer error occurred when uploading.
-      return res.status(400).json({ multererror: err.message });
+      return res.status(400).json({ error: err.message });
     } else if (err) {
       // An unknown error occurred when uploading.
-      return res.status(500).json({ unknownerror: err.message });
+      return res.status(500).json({ error: err.message });
     }
 
     // Everything went fine.
