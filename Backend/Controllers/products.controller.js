@@ -3,12 +3,11 @@ import { removeFromCloudinary, uploadToCloudinary } from "../Utilities/Cloudinar
 
 export const addProducts = async (req, res) => {
   const product = req.body;
+  const file = product.file
   try {
     if (product) {
-      const filePath = req.file.path;
-      const { secure_url, public_id } = await uploadToCloudinary(filePath, {
-        folder: "products",
-      });
+    
+      const { secure_url, public_id } = await uploadToCloudinary(file, "/solemate/products");
 
       // Convert the tax rate from percentage to a decimal fraction
       const taxRate = product.taxRate / 100;
