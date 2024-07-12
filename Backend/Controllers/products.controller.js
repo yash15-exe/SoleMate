@@ -2,7 +2,7 @@ import productModel from "../Models/Product.model.js";
 import { removeFromCloudinary, uploadToCloudinary } from "../Utilities/CloudinaryUtility.js";
 
 export const addProducts = async (req, res) => {
-  const product = await req.body;
+  const product =  req.body;
   console.log(product);
   const file = product.file
   if(!product){
