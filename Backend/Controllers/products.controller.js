@@ -2,9 +2,9 @@ import productModel from "../Models/Product.model.js";
 import { removeFromCloudinary, uploadToCloudinary } from "../Utilities/CloudinaryUtility.js";
 
 export const addProducts = async (req, res) => {
-  const product = req.body;
+  const product = await req.formData();
   console.log(product);
-  const file = product.file
+  const file = product.get("file")
 
   try {
     if (product) {
@@ -15,13 +15,13 @@ export const addProducts = async (req, res) => {
       const taxRate = product.taxRate / 100;
 
       const newProduct = new productModel({
-        name: product.name,
-        productBrand: product.productBrand,
-        description: product.description,
-        price: product.price,
+        name: product.get("name"),
+        productBrand: product.get("productBrand"),
+        description: product.get("description"),
+        price: product.get("price"),
         imageUrl: secure_url,
-        availableUnits: product.availableUnits,
-        unitsSold: product.unitsSold,
+        availableUnits: product.get("availableUnits"),
+        unitsSold: product.get("unitsSold"),
         imagePublicId: public_id,
         taxRate: taxRate,
       });
