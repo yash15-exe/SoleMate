@@ -34,6 +34,7 @@ function Footer() {
       </div>
       <div className="container mx-auto mt-8 text-center text-gray-400">
         <p>&copy; {new Date().getFullYear()} SoleMate. All rights reserved.</p>
+        <p>Made By Yash Raikar</p>
       </div>
     </footer>
   );
