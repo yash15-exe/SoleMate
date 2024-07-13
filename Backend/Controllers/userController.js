@@ -117,7 +117,7 @@ export const getCart = async (req, res) => {
         const user = await userModel.findOne({ username }).populate('cart');
 
         if (!user) {
-            res.status(404).send({ message: "User not found" });
+            res.status(402).send({ message: "User not found" });
             return;
         }
 
@@ -137,10 +137,10 @@ export const getCart = async (req, res) => {
 
 
 export const deleteFromCart = async (req, res) => {
-  const { productId, userId } = req.body;
+  const { productId, username } = req.body;
 
   try {
-    const user = await userModel.findById(userId);
+    const user = await userModel.findOne({username});
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -152,7 +152,7 @@ export const deleteFromCart = async (req, res) => {
     // Save the updated user
     await user.save();
 
-    return res.status(200).json({ message: 'Product removed from cart', user });
+    return res.status(200).json({ message: 'Product removed from cart', user,status:200 });
   } catch (error) {
     console.error('Error deleting product from cart:', error);
     return res.status(500).json({ message: 'Server Error' });

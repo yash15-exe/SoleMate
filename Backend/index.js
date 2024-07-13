@@ -26,7 +26,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+app.options('https://solemate-app.vercel.app', cors(corsOptions));
 // Define your routes
 app.use("/api", authRoutes);
 app.use("/api", productRoutes);
