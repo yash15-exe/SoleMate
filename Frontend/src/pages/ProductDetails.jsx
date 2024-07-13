@@ -71,7 +71,7 @@ function ProductDetails() {
             <h1 className="text-3xl font-bold mb-2 text-black">{product.name}</h1>
             <p className="text-xl font-semibold text-gray-700 mb-2">{product.productBrand}</p>
             <p className="text-lg mb-4 text-black">{product.description}</p>
-            <p className="text-2xl font-bold text-red-600 mb-4">${product.price?.toFixed(2)}</p>
+            <p className="text-2xl font-bold text-red-600 mb-4">₹{product.price?.toFixed(2)}</p>
           </div>
           <div className="border-b mb-4 pb-4">
             <p className="text-md text-gray-600 mb-2">

@@ -80,7 +80,7 @@ function ProductCard({ product }) {
         <div className="flex items-center justify-between gap-11 absolute bottom-2 ">
           <div className="font-semibold">
             <div>Price:</div>
-            <div className="font-poppins text-2xl">${product.price}</div>
+            <div className="font-poppins text-2xl">₹{product.price}</div>
           </div>
           
           <button
